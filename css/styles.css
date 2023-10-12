@@ -1,0 +1,241 @@
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-shadow: 1px 0.5px 1px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+h1 {
+  color: darkblue;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 4.5%;
+  margin-left: 14%;
+}
+
+h2 {
+  color: rgba(47, 47, 47);
+  text-align: center;
+}
+
+h3 {
+  font-weight: 600;
+  text-align: center;
+}
+
+.whyict {
+  background-color: rgba(47, 47, 47, 0.34);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.content {
+  background-color: rgba(47, 47, 47, 0.34);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+p,
+li {
+  font-size: 20px;
+  text-align: justify;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+body {
+  background-image: url(../resources/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.link {
+  color: white;
+}
+
+.link:hover {
+  color: darkblue;
+}
+
+.navigationbar {
+  color: white;
+  background-color: rgba(0, 0, 139, 0.734);
+  padding: 1.1%;
+  position: fixed;
+  top: 1%;
+  text-align: center;
+  width: 100%;
+  margin-top:-1%;
+  margin-left:-1%;
+  display:inline-block;
+}
+
+.navigation {
+  width: 40%;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  margin-right: 6%;
+  background-position: left;
+  padding: 5px 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+.navigationselected {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-right: 6%;
+  justify-content: center;
+  margin-top: 1%;
+}
+
+.navigation:hover{
+  background-color: white;
+  padding: 10px;
+  color: black;
+}
+
+.question {
+  color: white;
+  font-size: 30px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.question:hover {
+  color: darkblue;
+}
+
+.info {
+  background-color: rgba(47, 47, 47, 0.34);
+  padding: 10px;
+  padding-left: 40px;
+  border-radius: 10px;
+  margin-right: 75%;
+  margin-left: 5%;
+}
+
+.faq {
+  background-color: rgba(47, 47, 47, 0.34);
+  padding: 10px;
+  padding-left: 30px;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 10%;
+}
+
+.dashboard {
+  background-color: rgba(47, 47, 47, 0.34);
+  color: white;
+  border-collapse: collapse;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+th,
+td {
+  color: white;
+  text-shadow: none;
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.header {
+  font-weight: 400;
+}
+
+.tablename {
+  font-weight: 600;
+  color: white;
+  text-shadow: 1px 0.5px 1px rgba(47, 47, 47, 0.34);
+}
+
+.programname {
+  color: white;
+  font-weight: 600;
+  text-shadow: 1px 0.5px 1px rgba(47, 47, 47, 0.34);
+}
+
+th {
+  text-align: center;
+  border-right: none;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+.aboutme {
+  text-align: left;
+  display: list-item;
+}
+
+.progressbar {
+  background-color: rgb(192, 192, 192);
+  width: 80%;
+  border-radius: 15px;
+  margin-left: 10%;
+}
+
+.pbpercentage {
+  padding: 1%;
+  text-align: left;
+  font-size: 20px;
+  border-radius: 15px;
+  width: 80%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(47, 47, 47, 0.34);
+  padding-bottom: 2%;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.info {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin-right: 5%;
+  margin-left: 3%;
+  margin-top: 2%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+video {
+  border-radius: 10px;
+  margin-left: 41%;
+}
+
+.post {
+  background-color: rgba(47, 47, 47, 0.34);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 2%;
+}
+
+.postname{
+  color: darkblue;
+  text-align: left;
+  margin-left: 2%
+}
