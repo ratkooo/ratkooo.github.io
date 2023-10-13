@@ -21,6 +21,7 @@ h2 {
 h3 {
   font-weight: 600;
   text-align: center;
+  color: white;
 }
 
 .whyict {
@@ -102,9 +103,10 @@ body {
 }
 
 .navigation:hover{
-  background-color: white;
+  background-color:rgba(255, 255, 255, 0.666);
   padding: 10px;
   color: black;
+  text-decoration:underline;
 }
 
 .question {
@@ -217,7 +219,9 @@ th {
   text-align: center;
   font-size: 30px;
   font-weight: 700;
+  color: rgba(47, 47, 47);
 }
+
 
 video {
   border-radius: 10px;
@@ -239,3 +243,55 @@ video {
   text-align: left;
   margin-left: 2%
 }
+
+.sidebaricon{
+  color: white;
+  font-size: 25px;
+  margin-right: 91%;
+  text-align:left;
+  margin-left: 1%;
+  margin-bottom: -2%;
+  margin-top: 0.5%;
+  display: flex;
+}
+
+
+.sidebar {
+  width: 17%; 
+  height: 1%;
+  color: black;
+  padding: 20px;
+  position: fixed;
+  top: -3%;
+  margin-top:-100%;
+  left:-15%;
+  padding-bottom:104%;
+  
+
+}
+
+.sidebar:hover{
+  left:0;
+  margin-top:5.5%;
+  background-color: rgba(0, 0, 139, 0.734);
+  padding-bottom:23%;
+  border-bottom-right-radius: 10px;
+
+}
+
+.sidebar a {
+  text-align: left;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+}
+
+.sidebar a:hover {
+  text-decoration:underline;
+  background-color:rgba(255, 255, 255, 0.666);
+  border-radius: 10px;
+  color: black; 
+}
+
