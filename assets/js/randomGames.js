@@ -1,26 +1,106 @@
-// Function to get filters from localStorage and build the API URL
-const buildApiUrl = () => {
-    const baseUrl = 'https://cors-anywhere.herokuapp.com/https://www.freetogame.com/api/games?';
-    
-    const genre = localStorage.getItem('selectedGenre') || 'any';
-    const platform = localStorage.getItem('selectedPlatform') || 'any';
-    const developer = localStorage.getItem('selectedDeveloper') || 'any';
-    const publisher = localStorage.getItem('selectedPublisher') || 'any';
-    const releaseYear = localStorage.getItem('selectedReleaseYear') || 'any';
+// Fetch data from the FreeToGame API via RapidAPI
+fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': 'aea68523f5msh37375284730d652p16b318jsn1e2a1607c4ea',
+        'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
+    }
+})
+    .then(response => response.json())
+    .then(data => {
+        // Add 'ANY' as the default option for filtering
+        const addAnyOption = (selectElement) => {
+            const anyOption = document.createElement('option');
+            anyOption.value = 'any';
+            anyOption.textContent = 'Any';
+            selectElement.appendChild(anyOption);
+        };
 
-    // Construct the API URL without applying filters to fetch all games
-    const apiUrl = `${baseUrl}${platform !== 'any' ? `platform=${platform}&` : ''}${releaseYear !== 'any' ? `release_year=${releaseYear}&` : ''}`;
-    
-    console.log('Constructed API URL:', apiUrl); // Check the generated URL
-    return apiUrl;
-};
+        // Function to sort a Set alphabetically and append options to the dropdown
+        const populateSortedDropdown = (selectElement, itemsSet) => {
+            const sortedItems = Array.from(itemsSet).sort((a, b) => a.localeCompare(b)); // Sort alphabetically
+            sortedItems.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.toLowerCase();
+                option.textContent = item;
+                selectElement.appendChild(option);
+            });
+        };
+
+        // Function to create and populate dropdowns with sorted data
+        const populateDropdowns = () => {
+            const genrePromise = new Promise((resolve) => {
+                const genreSelect = document.getElementById('genre');
+                addAnyOption(genreSelect);
+                const genres = new Set();
+                data.forEach(game => genres.add(game.genre));
+                populateSortedDropdown(genreSelect, genres);
+                resolve('Genres populated');
+            });
+
+            const developerPromise = new Promise((resolve) => {
+                const developerSelect = document.getElementById('developer');
+                addAnyOption(developerSelect);
+                const developers = new Set();
+                data.forEach(game => developers.add(game.developer));
+                populateSortedDropdown(developerSelect, developers);
+                resolve('Developers populated');
+            });
+
+            const publisherPromise = new Promise((resolve) => {
+                const publisherSelect = document.getElementById('publisher');
+                addAnyOption(publisherSelect);
+                const publishers = new Set();
+                data.forEach(game => publishers.add(game.publisher));
+                populateSortedDropdown(publisherSelect, publishers);
+                resolve('Publishers populated');
+            });
+
+            // Execute all promises concurrently using Promise.all
+            return Promise.all([genrePromise, developerPromise, publisherPromise]);
+        };
+
+        // Call the function to populate the dropdowns
+        populateDropdowns()
+            .then((messages) => {
+                console.log(messages);
+            })
+            .catch(error => {
+                console.error('Error while populating dropdowns:', error);
+            });
+
+        // Function to save the selected filters to localStorage
+        const saveFilters = () => {
+            const genre = document.getElementById('genre').value;
+            const developer = document.getElementById('developer').value;
+            const publisher = document.getElementById('publisher').value;
+
+            localStorage.setItem('selectedGenre', genre);
+            localStorage.setItem('selectedDeveloper', developer);
+            localStorage.setItem('selectedPublisher', publisher);
+        };
+
+        // Event listener for the search button
+        document.getElementById('searchButton').addEventListener('click', () => {
+            saveFilters();
+            window.location.href = "randomgames.html";
+        });
+
+    })
+    .catch(error => console.error('Error fetching games:', error));
 
 // Function to fetch all games and filter them based on selected attributes
 const fetchFilteredGames = () => {
-    const apiUrl = buildApiUrl();
+    const apiUrl = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
     console.log('Fetching from:', apiUrl);
 
-    fetch(apiUrl)
+    fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'aea68523f5msh37375284730d652p16b318jsn1e2a1607c4ea',
+            'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
+        }
+    })
         .then(response => response.json())
         .then(data => {
             if (data.status === 0) {
@@ -30,24 +110,20 @@ const fetchFilteredGames = () => {
 
             // Get the selected filter values
             const selectedGenre = localStorage.getItem('selectedGenre') || 'any';
-            const selectedPlatform = localStorage.getItem('selectedPlatform') || 'any';
             const selectedDeveloper = localStorage.getItem('selectedDeveloper') || 'any';
             const selectedPublisher = localStorage.getItem('selectedPublisher') || 'any';
-            const selectedReleaseYear = localStorage.getItem('selectedReleaseYear') || 'any';
 
             // Filter games based on the selected attributes
             const filteredGames = data.filter(game => {
                 const genreMatch = selectedGenre === 'any' || game.genre.toLowerCase().includes(selectedGenre.toLowerCase());
-                const platformMatch = selectedPlatform === 'any' || game.platform.toLowerCase().includes(selectedPlatform.toLowerCase());
                 const developerMatch = selectedDeveloper === 'any' || game.developer.toLowerCase().includes(selectedDeveloper.toLowerCase());
                 const publisherMatch = selectedPublisher === 'any' || game.publisher.toLowerCase().includes(selectedPublisher.toLowerCase());
-                const releaseYearMatch = selectedReleaseYear === 'any' || game.release_date.includes(selectedReleaseYear);
 
-                return genreMatch && platformMatch && developerMatch && publisherMatch && releaseYearMatch;
+                return genreMatch && developerMatch && publisherMatch;
             });
 
             // Shuffle the filtered games and pick 10 random games
-            const shuffledGames = shuffleArray(filteredGames).slice(0, 10);
+            const shuffledGames = shuffleArray(filteredGames).slice(0, 9);
             console.log('Filtered Random Games:', shuffledGames);
 
             // Display the games
@@ -60,7 +136,7 @@ const fetchFilteredGames = () => {
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
 };
@@ -75,24 +151,26 @@ const displayGames = (games) => {
         return;
     }
 
-    gamesContainer.innerHTML = ''; // Clear previous content
+    gamesContainer.innerHTML = '';
 
     games.forEach(game => {
         // Create a link to the game's URL
         const gameLink = document.createElement('a');
         gameLink.href = game.game_url;
-        gameLink.target = '_blank'; // Open in a new tab
+        gameLink.target = '_blank';
         gameLink.classList.add('game-card', 'block', 'rounded-lg', 'overflow-hidden', 'shadow-md', 'transition-all', 'hover:scale-105');
 
         // Create the game card
         const gameCard = document.createElement('div');
         gameCard.classList.add('bg-white', 'p-4');
 
+        // Add the game details, including the release date
         gameCard.innerHTML = `
             <img src="${game.thumbnail}" alt="${game.title}" class="w-full h-48 object-cover rounded-lg">
             <h2 class="text-xl font-bold mt-4">${game.title}</h2>
             <p class="mt-2 text-gray-600">${game.short_description}</p>
             <p class="mt-4 text-sm text-gray-400">Platform: ${game.platform}</p>
+            <p class="mt-4 text-sm text-gray-400">Release Date: ${game.release_date ? game.release_date : 'N/A'}</p>
         `;
 
         // Append the game card inside the link
@@ -103,5 +181,14 @@ const displayGames = (games) => {
     });
 };
 
-// Fetch games when the page loads
-document.addEventListener('DOMContentLoaded', fetchFilteredGames);
+// Initial fetch of games
+fetchFilteredGames();
+
+// Event listener for the "Generate Other Games" button
+const generateOtherGamesButton = document.getElementById('generateOtherGamesButton');
+if (generateOtherGamesButton) {
+    generateOtherGamesButton.addEventListener('click', () => {
+        window.scrollTo(0, 0);
+        fetchFilteredGames();
+    });
+}
