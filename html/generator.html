@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free-to-Play Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/script.js" defer></script>
+</head>
+
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="text-purple-600 flex items-center justify-between w-full">
+        <div class="w-full flex items-center justify-center relative">
+            <h1
+                class="text-2xl md:text-4xl font-bold text-purple-600 whitespace-nowrap absolute left-1/2 pl-6 pt-4 transform -translate-x-1/2">
+                Generate a game to your liking
+            </h1>
+        </div>
+
+        <!-- Hoverable menu container -->
+        <div class="relative group">
+            <!-- Hamburger menu -->
+            <button class="block text-black focus:outline-none ml-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+            <!-- Sliding menu that stays open when hovered -->
+            <nav
+                class="absolute top-0 right-0 h-screen bg-purple-600 w-64 transform translate-x-full opacity-0 bg-opacity-80 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100">
+                <ul class="text-white p-6">
+                    <li class="mb-4"><a href="../index.html">Overview</a></li>
+                    <li class="mb-4"><a href="details.html">Details</a></li>
+                    <li class="mb-4"><a href="https://www.freetogame.com/">FreeToGame API</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content section -->
+    <main class="p-6">
+        <section class="space-y-6">
+            <!-- First selection bar -->
+            <div>
+                <label for="genre" class="block text-lg font-semibold text-purple-600">Select Genre:</label>
+                <select id="genre" class="w-full p-3 mt-2 border-2 border-gray-300 rounded-lg">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+            <!-- Second selection bar -->
+            <div>
+                <label for="platform" class="block text-lg font-semibold text-purple-600">Select Platform:</label>
+                <select id="platform" class="w-full p-3 mt-2 border-2 border-gray-300 rounded-lg">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+            <!-- Third selection bar -->
+            <div>
+                <label for="developer" class="block text-lg font-semibold text-purple-600">Select Developer:</label>
+                <select id="developer" class="w-full p-3 mt-2 border-2 border-gray-300 rounded-lg">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+            <!-- Fourth selection bar -->
+            <div>
+                <label for="publisher" class="block text-lg font-semibold text-purple-600">Select Publisher:</label>
+                <select id="publisher" class="w-full p-3 mt-2 border-2 border-gray-300 rounded-lg">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+
+            <!-- Fifth selection bar -->
+            <div>
+                <label for="release-year" class="block text-lg font-semibold text-purple-600">Select Release
+                    Year:</label>
+                <select id="release-year" class="w-full p-3 mt-2 border-2 border-gray-300 rounded-lg">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+        </section>
+        <section class="container mx-auto text-center p-6">
+            <!-- Call to Action Button -->
+            <button id="searchButton"
+                class="bg-purple-600 text-white py-3 px-8 rounded-full mt-10 text-lg hover:bg-purple-500 transition-all inline-block text-center">
+                Search for a random game
+            </button>
+        </section>
+    </main>
+
+</body>
+
+</html>

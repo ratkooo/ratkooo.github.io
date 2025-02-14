@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free-to-Play Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800  overflow-x-hidden">
+
+<!-- Navigation -->
+<header class="text-purple-600 flex items-center justify-between w-full">
+    <div class="w-full flex items-center justify-center relative">
+        <h1
+            class="text-2xl md:text-4xl font-bold text-purple-600 whitespace-nowrap absolute left-1/2 pl-6 pt-4 transform -translate-x-1/2">
+            Free-to-play generator
+        </h1>
+    </div>
+
+    <!-- Hoverable menu container -->
+    <div class="relative group">
+        <!-- Hamburger menu -->
+        <button class="block text-black focus:outline-none ml-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+        <!-- Sliding menu that stays open when hovered -->
+        <nav
+            class="absolute top-0 right-0 h-screen bg-purple-600 w-64 transform translate-x-full opacity-0 bg-opacity-80 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100">
+            <ul class="text-white p-6">
+                <li class="mb-4"><a href="index.html">Overview</a></li>
+                <li class="mb-4"><a href="html/details.html">Details</a></li>
+                <li class="mb-4"><a href="https://www.freetogame.com/">FreeToGame API</a></li>
+                </a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+    <!-- Main Content -->
+    <main class="container mx-auto text-center p-6">
+        <section class=" text-justify ">
+            <p class="text-gray-600 text-base md:text-lg mb-6">
+                Welcome to the Free-to-play generator website, where you can generate a random free-to-play game up to
+                your specifications. The randomizer chooses a random game from the database of Free-to-Play Games API.
+            </p>
+            <p class="text-gray-600 text-base md:text-lg mb-6">
+                Access programmatically the best free-to-play games and free MMO games! Welcome to the FreeToGame API
+                (Aka The Free-To-Play Games Database API)! This API provides access to a comprehensive database of
+                free-to-play games and free MMO games! You can use this API to retrieve information about free games,
+                such as their title, genre, description and more. The FreeToGame API is available for everyone to use
+                without any restrictions.
+            </p>
+        </section>
+        <!-- Call to Action Button -->
+        <a href="html/generator.html"
+            class="bg-purple-600 text-white py-3 px-8 rounded-full mt-10 text-lg hover:bg-purple-500 transition-all inline-block">
+            Search for a random game
+        </a>
+    </main>
+
+</body>
+
+</html>
