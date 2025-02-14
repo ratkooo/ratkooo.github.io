@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free-to-Play Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/randomgames.js" defer></script>
+    <script defer>
+        // JavaScript to handle menu toggle for mobile and hover functionality for desktop
+        document.addEventListener('DOMContentLoaded', function () {
+            const burgerButton = document.getElementById('burgerButton');
+            const closeButton = document.getElementById('closeButton');
+            const slidingMenu = document.getElementById('slidingMenu');
+            const body = document.body;
+
+            let isMobileMenuOpen = false;
+
+            // Handle black burger button click for mobile view to open the menu
+            burgerButton.addEventListener('click', function () {
+                if (window.innerWidth <= 1024) {
+                    slidingMenu.classList.toggle('translate-x-full');
+                    slidingMenu.classList.toggle('opacity-0');
+                    isMobileMenuOpen = !isMobileMenuOpen;
+                    burgerButton.classList.toggle('text-white', isMobileMenuOpen);
+                }
+            });
+
+            // Handle white "X" button click inside menu to close the menu
+            closeButton.addEventListener('click', function () {
+                if (window.innerWidth <= 1024) {
+                    slidingMenu.classList.add('translate-x-full');
+                    slidingMenu.classList.add('opacity-0');
+                    isMobileMenuOpen = false;
+                    burgerButton.classList.remove('text-white');
+                }
+            });
+
+            // Close mobile menu if window is resized
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 1024 && isMobileMenuOpen) {
+                    slidingMenu.classList.add('translate-x-full');
+                    slidingMenu.classList.add('opacity-0');
+                    isMobileMenuOpen = false;
+                    burgerButton.classList.remove('text-white');
+                }
+            });
+
+            // Handle hover for desktop view (min-width: 1024px)
+            burgerButton.addEventListener('mouseenter', function () {
+                if (window.innerWidth > 1024) {
+                    slidingMenu.classList.remove('translate-x-full');
+                    slidingMenu.classList.remove('opacity-0');
+                }
+            });
+
+            // Close the menu when the cursor leaves the menu (desktop view)
+            slidingMenu.addEventListener('mouseleave', function () {
+                if (window.innerWidth > 1024) {
+                    slidingMenu.classList.add('translate-x-full');
+                    slidingMenu.classList.add('opacity-0');
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-10 bg-white shadow-md py-4">
+        <section class="w-full flex items-center justify-between px-6">
+            <h1 class="text-2xl md:text-4xl font-bold text-purple-600 text-center flex-1">
+                Your generated games
+            </h1>
+
+            <!-- Black Hamburger button (visible on all views) -->
+            <button id="burgerButton" class="block text-black focus:outline-none fixed top-4 right-6 z-30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </section>
+    </header>
+
+    <!-- Sliding Menu -->
+    <nav id="slidingMenu" class="fixed top-0 right-0 h-screen w-64 bg-purple-600 transform translate-x-full opacity-0 bg-opacity-80 transition-all duration-300 ease-in-out z-20">
+        <button id="closeButton" class="block text-white focus:outline-none p-4 lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        
+        <!-- Menu items -->
+        <ul class="text-white p-6">
+            <li class="mb-4"><a href="../index.html">Overview</a></li>
+            <li class="mb-4"><a href="details.html">Details</a></li>
+            <li class="mb-4"><a href="https://www.freetogame.com/">FreeToGame API</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="pt-24 p-6">
+        <section id="gamesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        </section>
+
+        <!-- Generate other games button -->
+        <div class="text-center mt-12 mb-6">
+            <button id="generateOtherGamesButton" class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition-all">
+                Generate Other Games
+            </button>
+        </div>
+    </main>
+
+</body>
+
+</html>

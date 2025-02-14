@@ -11,7 +11,8 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "^12.0.2",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "vite-plugin-static-copy": "^2.2.0"
   },
   "dependencies": {
     "express": "^4.19.2",
