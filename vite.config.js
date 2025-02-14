@@ -7,6 +7,10 @@ export default {
         {
           src: 'html/*', // Source folder with .html files
           dest: 'html'   // Destination inside dist/html
+        },
+        {
+            src: 'assets/*', // Source folder with .html files
+            dest: 'assets'   // Destination inside dist/html
         }
       ]
     })
