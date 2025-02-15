@@ -25,6 +25,16 @@
                 }
             });
 
+            // Handle white "X" button click inside menu to close the menu
+            closeButton.addEventListener('click', function () {
+                if (window.innerWidth <= 1024) {
+                    slidingMenu.classList.add('translate-x-full');
+                    slidingMenu.classList.add('opacity-0');
+                    isMobileMenuOpen = false;
+                    burgerButton.classList.remove('text-white');
+                }
+            });
+
             // Close mobile menu if window is resized
             window.addEventListener('resize', function () {
                 if (window.innerWidth > 1024 && isMobileMenuOpen) {
