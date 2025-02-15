@@ -11,18 +11,30 @@
         // JavaScript to handle menu toggle for mobile and hover functionality for desktop
         document.addEventListener('DOMContentLoaded', function () {
             const burgerButton = document.getElementById('burgerButton');
+            const closeButton = document.getElementById('closeButton');
             const slidingMenu = document.getElementById('slidingMenu');
             const body = document.body;
 
             let isMobileMenuOpen = false;
 
-            // Handle burger button click for mobile view
+            // Handle black burger button click for mobile view to open the menu
             burgerButton.addEventListener('click', function () {
                 if (window.innerWidth <= 1024) {
                     slidingMenu.classList.toggle('translate-x-full');
                     slidingMenu.classList.toggle('opacity-0');
                     isMobileMenuOpen = !isMobileMenuOpen;
+
                     burgerButton.classList.toggle('text-white', isMobileMenuOpen);
+                }
+            });
+
+            // Handle white "X" button click inside menu to close the menu
+            closeButton.addEventListener('click', function () {
+                if (window.innerWidth <= 1024) {
+                    slidingMenu.classList.add('translate-x-full');
+                    slidingMenu.classList.add('opacity-0');
+                    isMobileMenuOpen = false;
+                    burgerButton.classList.remove('text-white');
                 }
             });
 
@@ -44,7 +56,7 @@
                 }
             });
 
-            // Close the menu when the cursor leaves the menu
+            // Close the menu when the cursor leaves the menu (desktop view)
             slidingMenu.addEventListener('mouseleave', function () {
                 if (window.innerWidth > 1024) {
                     slidingMenu.classList.add('translate-x-full');
@@ -61,10 +73,10 @@
     <header class="fixed top-0 left-0 right-0 z-10 bg-white shadow-md py-4">
         <section class="w-full flex items-center justify-between px-6">
             <h1 class="text-2xl md:text-4xl font-bold text-purple-600 text-center flex-1">
-                Generate random games
+                Generate Random Games
             </h1>
 
-            <!-- Hamburger menu -->
+            <!-- Black Hamburger button (visible on all views) -->
             <button id="burgerButton" class="block text-black focus:outline-none fixed top-4 right-6 z-30">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -76,6 +88,13 @@
 
     <!-- Sliding Menu -->
     <nav id="slidingMenu" class="fixed top-0 right-0 h-screen w-64 bg-purple-600 transform translate-x-full opacity-0 bg-opacity-80 transition-all duration-300 ease-in-out z-20">
+        <button id="closeButton" class="block text-white focus:outline-none p-4 lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        
+        <!-- Menu items -->
         <ul class="text-white p-6">
             <li class="mb-4"><a href="../index.html">Overview</a></li>
             <li class="mb-4"><a href="details.html">Details</a></li>
